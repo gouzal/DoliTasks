@@ -197,7 +197,7 @@ class modDoliTasks extends DolibarrModules
 		// Cronjobs (List of cron jobs entries to add when module is enabled)
 		// unit_frequency must be 60 for minute, 3600 for hour, 86400 for day, 604800 for week
 		$this->cronjobs = array(
-			0=>array('label'=>'MyJob label', 'jobtype'=>'method', 'class'=>'/dolitasks/class/myobject.class.php', 'objectname'=>'MyObject', 'method'=>'doScheduledJob', 'parameters'=>'', 'comment'=>'Comment', 'frequency'=>2, 'unitfrequency'=>3600, 'status'=>0, 'test'=>'$conf->dolitasks->enabled', 'priority'=>50)
+			0=>array('label'=>'MyJob label', 'jobtype'=>'method', 'class'=>'/dolitasks/class/llx_dolitasks_my_tasks.class.php', 'objectname'=>'llx_dolitasks_my_tasks', 'method'=>'doScheduledJob', 'parameters'=>'', 'comment'=>'Comment', 'frequency'=>2, 'unitfrequency'=>3600, 'status'=>0, 'test'=>'$conf->dolitasks->enabled', 'priority'=>50)
 		);
 		// Example: $this->cronjobs=array(0=>array('label'=>'My label', 'jobtype'=>'method', 'class'=>'/dir/class/file.class.php', 'objectname'=>'MyClass', 'method'=>'myMethod', 'parameters'=>'param1, param2', 'comment'=>'Comment', 'frequency'=>2, 'unitfrequency'=>3600, 'status'=>0, 'test'=>'$conf->dolitasks->enabled', 'priority'=>50),
 		//                                1=>array('label'=>'My label', 'jobtype'=>'command', 'command'=>'', 'parameters'=>'param1, param2', 'comment'=>'Comment', 'frequency'=>1, 'unitfrequency'=>3600*24, 'status'=>0, 'test'=>'$conf->dolitasks->enabled', 'priority'=>50)
@@ -209,21 +209,21 @@ class modDoliTasks extends DolibarrModules
 
 		$r=0;
 		$this->rights[$r][0] = $this->numero + $r;	// Permission id (must not be already used)
-		$this->rights[$r][1] = 'Read myobject of DoliTasks';	// Permission label
+		$this->rights[$r][1] = 'Read llx_dolitasks_my_tasks of DoliTasks';	// Permission label
 		$this->rights[$r][3] = 1; 					// Permission by default for new user (0/1)
 		$this->rights[$r][4] = 'read';				// In php code, permission will be checked by test if ($user->rights->dolitasks->level1->level2)
 		$this->rights[$r][5] = '';				    // In php code, permission will be checked by test if ($user->rights->dolitasks->level1->level2)
 
 		$r++;
 		$this->rights[$r][0] = $this->numero + $r;	// Permission id (must not be already used)
-		$this->rights[$r][1] = 'Create/Update myobject of DoliTasks';	// Permission label
+		$this->rights[$r][1] = 'Create/Update llx_dolitasks_my_tasks of DoliTasks';	// Permission label
 		$this->rights[$r][3] = 1; 					// Permission by default for new user (0/1)
 		$this->rights[$r][4] = 'write';				// In php code, permission will be checked by test if ($user->rights->dolitasks->level1->level2)
 		$this->rights[$r][5] = '';				    // In php code, permission will be checked by test if ($user->rights->dolitasks->level1->level2)
 
 		$r++;
 		$this->rights[$r][0] = $this->numero + $r;	// Permission id (must not be already used)
-		$this->rights[$r][1] = 'Delete myobject of DoliTasks';	// Permission label
+		$this->rights[$r][1] = 'Delete llx_dolitasks_my_tasks of DoliTasks';	// Permission label
 		$this->rights[$r][3] = 1; 					// Permission by default for new user (0/1)
 		$this->rights[$r][4] = 'delete';				// In php code, permission will be checked by test if ($user->rights->dolitasks->level1->level2)
 		$this->rights[$r][5] = '';				    // In php code, permission will be checked by test if ($user->rights->dolitasks->level1->level2)
@@ -251,13 +251,13 @@ class modDoliTasks extends DolibarrModules
 
 		/* END MODULEBUILDER TOPMENU */
 
-		/* BEGIN MODULEBUILDER LEFTMENU MYOBJECT
+		/* BEGIN MODULEBUILDER LEFTMENU LLX_DOLITASKS_MY_TASKS
 		$this->menu[$r++]=array(	'fk_menu'=>'fk_mainmenu=dolitasks',	    // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
 								'type'=>'left',			                // This is a Left menu entry
-								'titre'=>'List MyObject',
+								'titre'=>'List llx_dolitasks_my_tasks',
 								'mainmenu'=>'dolitasks',
-								'leftmenu'=>'dolitasks_myobject_list',
-								'url'=>'/dolitasks/myobject_list.php',
+								'leftmenu'=>'dolitasks_llx_dolitasks_my_tasks_list',
+								'url'=>'/dolitasks/llx_dolitasks_my_tasks_list.php',
 								'langs'=>'dolitasks@dolitasks',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
 								'position'=>1000+$r,
 								'enabled'=>'$conf->dolitasks->enabled',  // Define condition to show or hide menu entry. Use '$conf->dolitasks->enabled' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
@@ -266,39 +266,68 @@ class modDoliTasks extends DolibarrModules
 								'user'=>2);				                // 0=Menu for internal users, 1=external users, 2=both
 		$this->menu[$r++]=array(	'fk_menu'=>'fk_mainmenu=dolitasks,fk_leftmenu=dolitasks',	    // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
 								'type'=>'left',			                // This is a Left menu entry
-								'titre'=>'New MyObject',
+								'titre'=>'New llx_dolitasks_my_tasks',
 								'mainmenu'=>'dolitasks',
-								'leftmenu'=>'dolitasks_myobject_new',
-								'url'=>'/dolitasks/myobject_page.php?action=create',
+								'leftmenu'=>'dolitasks_llx_dolitasks_my_tasks_new',
+								'url'=>'/dolitasks/llx_dolitasks_my_tasks_page.php?action=create',
 								'langs'=>'dolitasks@dolitasks',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
 								'position'=>1000+$r,
 								'enabled'=>'$conf->dolitasks->enabled',  // Define condition to show or hide menu entry. Use '$conf->dolitasks->enabled' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
 								'perms'=>'1',			                // Use 'perms'=>'$user->rights->dolitasks->level1->level2' if you want your menu with a permission rules
 								'target'=>'',
 								'user'=>2);				                // 0=Menu for internal users, 1=external users, 2=both
-		END MODULEBUILDER LEFTMENU MYOBJECT */
+		*/
+
+		$this->menu[$r++]=array(
+                				'fk_menu'=>'fk_mainmenu=dolitasks',	    // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
+								'type'=>'left',			                // This is a Left menu entry
+								'titre'=>'List llx_dolitasks_my_tasks',
+								'mainmenu'=>'dolitasks',
+								'leftmenu'=>'dolitasks_llx_dolitasks_my_tasks',
+								'url'=>'/dolitasks/llx_dolitasks_my_tasks_list.php',
+								'langs'=>'dolitasks@dolitasks',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
+								'position'=>1100+$r,
+								'enabled'=>'$conf->dolitasks->enabled',  // Define condition to show or hide menu entry. Use '$conf->dolitasks->enabled' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
+								'perms'=>'1',			                // Use 'perms'=>'$user->rights->dolitasks->level1->level2' if you want your menu with a permission rules
+								'target'=>'',
+								'user'=>2);				                // 0=Menu for internal users, 1=external users, 2=both
+		$this->menu[$r++]=array(
+                				'fk_menu'=>'fk_mainmenu=dolitasks,fk_leftmenu=dolitasks_llx_dolitasks_my_tasks',	    // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
+								'type'=>'left',			                // This is a Left menu entry
+								'titre'=>'New llx_dolitasks_my_tasks',
+								'mainmenu'=>'dolitasks',
+								'leftmenu'=>'dolitasks_llx_dolitasks_my_tasks',
+								'url'=>'/dolitasks/llx_dolitasks_my_tasks_card.php?action=create',
+								'langs'=>'dolitasks@dolitasks',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
+								'position'=>1100+$r,
+								'enabled'=>'$conf->dolitasks->enabled',  // Define condition to show or hide menu entry. Use '$conf->dolitasks->enabled' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
+								'perms'=>'1',			                // Use 'perms'=>'$user->rights->dolitasks->level1->level2' if you want your menu with a permission rules
+								'target'=>'',
+								'user'=>2);				                // 0=Menu for internal users, 1=external users, 2=both
+               		
+		/* END MODULEBUILDER LEFTMENU LLX_DOLITASKS_MY_TASKS */
 
 
 		// Exports
 		$r=1;
 
-		/* BEGIN MODULEBUILDER EXPORT MYOBJECT */
+		/* BEGIN MODULEBUILDER EXPORT LLX_DOLITASKS_MY_TASKS */
 		/*
 		$langs->load("dolitasks@dolitasks");
 		$this->export_code[$r]=$this->rights_class.'_'.$r;
-		$this->export_label[$r]='MyObjectLines';	// Translation key (used only if key ExportDataset_xxx_z not found)
-		$this->export_icon[$r]='myobject@dolitasks';
-		$keyforclass = 'MyObject'; $keyforclassfile='/mymobule/class/myobject.class.php'; $keyforelement='myobject';
+		$this->export_label[$r]='llx_dolitasks_my_tasksLines';	// Translation key (used only if key ExportDataset_xxx_z not found)
+		$this->export_icon[$r]='llx_dolitasks_my_tasks@dolitasks';
+		$keyforclass = 'llx_dolitasks_my_tasks'; $keyforclassfile='/mymobule/class/llx_dolitasks_my_tasks.class.php'; $keyforelement='llx_dolitasks_my_tasks';
 		include DOL_DOCUMENT_ROOT.'/core/commonfieldsinexport.inc.php';
-		$keyforselect='myobject'; $keyforaliasextra='extra'; $keyforelement='myobject';
+		$keyforselect='llx_dolitasks_my_tasks'; $keyforaliasextra='extra'; $keyforelement='llx_dolitasks_my_tasks';
 		include DOL_DOCUMENT_ROOT.'/core/extrafieldsinexport.inc.php';
 		//$this->export_dependencies_array[$r]=array('mysubobject'=>'ts.rowid', 't.myfield'=>array('t.myfield2','t.myfield3')); // To force to activate one or several fields if we select some fields that need same (like to select a unique key if we ask a field of a child to avoid the DISTINCT to discard them, or for computed field than need several other fields)
 		$this->export_sql_start[$r]='SELECT DISTINCT ';
-		$this->export_sql_end[$r]  =' FROM '.MAIN_DB_PREFIX.'myobject as t';
+		$this->export_sql_end[$r]  =' FROM '.MAIN_DB_PREFIX.'llx_dolitasks_my_tasks as t';
 		$this->export_sql_end[$r] .=' WHERE 1 = 1';
-		$this->export_sql_end[$r] .=' AND t.entity IN ('.getEntity('myobject').')';
+		$this->export_sql_end[$r] .=' AND t.entity IN ('.getEntity('llx_dolitasks_my_tasks').')';
 		$r++; */
-		/* END MODULEBUILDER EXPORT MYOBJECT */
+		/* END MODULEBUILDER EXPORT LLX_DOLITASKS_MY_TASKS */
 	}
 
 	/**
