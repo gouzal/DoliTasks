@@ -221,16 +221,17 @@ class modDoliTasks extends DolibarrModules
 		$r++;
 		$this->rights[$r][0] = $this->numero + $r;	// Permission id (must not be already used)
 		$this->rights[$r][1] = 'Create/Update llx_dolitasks_my_tasks of DoliTasks';	// Permission label
-		$this->rights[$r][3] = 1; 					// Permission by default for new user (0/1)
+		$this->rights[$r][3] = 0; 					// Permission by default for new user (0/1)
 		$this->rights[$r][4] = 'write';				// In php code, permission will be checked by test if ($user->rights->dolitasks->level1->level2)
 		$this->rights[$r][5] = '';				    // In php code, permission will be checked by test if ($user->rights->dolitasks->level1->level2)
 
 		$r++;
 		$this->rights[$r][0] = $this->numero + $r;	// Permission id (must not be already used)
 		$this->rights[$r][1] = 'Delete llx_dolitasks_my_tasks of DoliTasks';	// Permission label
-		$this->rights[$r][3] = 1; 					// Permission by default for new user (0/1)
+		$this->rights[$r][3] = 0; 					// Permission by default for new user (0/1)
 		$this->rights[$r][4] = 'delete';				// In php code, permission will be checked by test if ($user->rights->dolitasks->level1->level2)
 		$this->rights[$r][5] = '';				    // In php code, permission will be checked by test if ($user->rights->dolitasks->level1->level2)
+
 
 
 		// Main menu entries
@@ -307,6 +308,7 @@ class modDoliTasks extends DolibarrModules
 								'perms'=>'1',			                // Use 'perms'=>'$user->rights->dolitasks->level1->level2' if you want your menu with a permission rules
 								'target'=>'',
 								'user'=>2);				                // 0=Menu for internal users, 1=external users, 2=both
+
 		$this->menu[$r++]=array(
                 				//'fk_menu'=>'fk_mainmenu=dolitasks,fk_leftmenu=dolitasks_llx_dolitasks_my_tasks',	    // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
 								'fk_menu'=>'fk_mainmenu=dolitasks',
@@ -321,7 +323,7 @@ class modDoliTasks extends DolibarrModules
 								'perms'=>'1',			                // Use 'perms'=>'$user->rights->dolitasks->level1->level2' if you want your menu with a permission rules
 								'target'=>'',
 								'user'=>2);				                // 0=Menu for internal users, 1=external users, 2=both
-               		
+								
 		/* END MODULEBUILDER LEFTMENU LLX_DOLITASKS_MY_TASKS */
 
 
