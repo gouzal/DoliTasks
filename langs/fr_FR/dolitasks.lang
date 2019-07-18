@@ -28,7 +28,7 @@ ModuleDoliTasksDesc = Description de DoliTasks
 DoliTasksSetup = Configuration du module DoliTasks
 Settings = Réglages
 DoliTasksSetupPage = Page de configuration du module DoliTasks
-
+DoliTasksArea = Espace des Tickets
 #
 # Page À propos
 #

@@ -99,13 +99,12 @@ class my_tasks extends CommonObject
 	); */
 	public $fields = array(
 			'rowid' => array('type'=>'integer', 'label'=>'TechnicalID', 'enabled'=>1, 'visible'=>-1, 'position'=>1, 'notnull'=>1, 'index'=>1, 'comment'=>"Id",),
-			'title' => array('type'=>'varchar(254)', 'label'=>'title', 'enabled'=>1, 'visible'=>-1, 'position'=>10, 'notnull'=>1, 'index'=>1, 'searchall'=>1,'help'=>"Help text", 'comment'=>"Reference of object", ),
-			'priority' => array('type'=>'integer', 'label'=>'priority', 'enabled'=>1, 'visible'=>-1, 'position'=>30, 'notnull'=>1, 'index'=>1, 'searchall'=>1,'help'=>"Help text", 'comment'=>"Reference of object", ),
-			'created_by_id' => array('type'=>'integer', 'label'=>'created by (id)', 'enabled'=>1, 'visible'=>-1, 'position'=>40, 'notnull'=>1, 'index'=>1, 'searchall'=>1,'help'=>"Help text", 'comment'=>"Reference of object", ),
-			'created_by_name' => array('type'=>'varchar(254)', 'label'=>'created by (name)', 'enabled'=>1, 'visible'=>-1, 'position'=>50, 'notnull'=>1, 'index'=>1, 'searchall'=>1,'help'=>"Help text", 'comment'=>"Reference of object", ),
-			'created_at' => array('type'=>'date', 'label'=>'created at', 'enabled'=>1, 'visible'=>-1, 'position'=>60, 'notnull'=>1, 'index'=>1, 'searchall'=>1,'help'=>"Help text", 'comment'=>"Reference of object", ),
-			'end_at' => array('type'=>'date', 'label'=>'end at', 'enabled'=>1, 'visible'=>-1, 'position'=>70, 'notnull'=>1, 'index'=>1, 'searchall'=>1,'help'=>"Help text", 'comment'=>"Reference of object", ),
-
+			'title' => array('type'=>'varchar(254)', 'label'=>'title', 'enabled'=>1, 'visible'=>-1, 'position'=>10, 'notnull'=>1, 'index'=>1, 'searchall'=>1,'help'=>"Task title", 'comment'=>"Task title", ),
+			'priority' => array('type'=>'integer', 'label'=>'priority', 'enabled'=>1, 'visible'=>-1, 'position'=>30, 'notnull'=>1, 'index'=>1, 'searchall'=>1,'help'=>"priority (between and 5)", 'comment'=>"priority (between and 5)", ),
+			'created_by_id' => array('type'=>'integer', 'label'=>'created by (id)', 'enabled'=>1, 'visible'=>-1, 'position'=>40, 'notnull'=>1, 'index'=>1, 'searchall'=>1,'help'=>"Created By", 'comment'=>"Created By", 'foreignkey'=>'user.rowid', 'showoncombobox'=>'1' ),
+			'created_by_name' => array('type'=>'varchar(254)', 'label'=>'created by (name)', 'enabled'=>1, 'visible'=>-1, 'position'=>50, 'notnull'=>1, 'index'=>1, 'searchall'=>1,'help'=>"UserName", 'comment'=>"UserName",  ),
+			'created_at' => array('type'=>'date', 'label'=>'created at', 'enabled'=>1, 'visible'=>-1, 'position'=>60, 'notnull'=>1, 'index'=>1, 'searchall'=>1,'help'=>"Creation date", 'comment'=>"Creation date", ),
+			'end_at' => array('type'=>'date', 'label'=>'end at', 'enabled'=>1, 'visible'=>-1, 'position'=>70, 'notnull'=>1, 'index'=>1, 'searchall'=>1,'help'=>"End date", 'comment'=>"End date", ),
 	);
 	/*public $rowid;
 	public $ref;

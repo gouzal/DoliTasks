@@ -79,7 +79,52 @@ llxHeader("",$langs->trans("DoliTasksArea"));
 print load_fiche_titre($langs->trans("DoliTasksArea"),'','dolitasks.png@dolitasks');
 
 print '<div class="fichecenter"><div class="fichethirdleft">';
+if (! empty($conf->dolitasks->enabled) && $user->rights->dolitasks->read)
+{
+	$sql='select priority,count(rowid) as nbr from llx_dolitasks_my_tasks group by priority';
+	$resql = $db->query($sql);
+		$dataPoints = [];
+	if ($resql)
+	{
+			$num = $db->num_rows($resql);
 
+		if ($num > 0)
+		{
+			
+			$i = 0;
+		
+			while ($i < $num)
+			{
+		
+		
+		$obj = $db->fetch_object($resql);
+		switch($obj->priority){
+			case 1:
+				$dataPoints[] = array("label"=> "Very Low", "y"=> $obj->nbr);
+				break;
+			case 2:
+				$dataPoints[] = array("label"=> "Low", "y"=> $obj->nbr);
+				break;
+			case 3:
+				$dataPoints[] = array("label"=> "Medium", "y"=> $obj->nbr);
+				break;
+			case 4:
+				$dataPoints[] = array("label"=> "High", "y"=> $obj->nbr);
+				break;
+			case 5:
+				$dataPoints[] = array("label"=> "Very High", "y"=> $obj->nbr);
+				break;
+			default:
+			$dataPoints[] = array("label"=> "Undefined", "y"=> $obj->nbr);
+			
+		}
+		$i++;
+			}}
+			
+	}
+
+print '<div id="chartContainer" style="height: 370px; width: 100%;"></div>';
+}
 
 /* BEGIN MODULEBUILDER DRAFT MYOBJECT
 // Draft MyObject
@@ -232,7 +277,36 @@ if (! empty($conf->dolitasks->enabled) && $user->rights->dolitasks->read)
 */
 
 print '</div></div></div>';
+?>
+<script>
+window.onload = function () {
+ 
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	exportEnabled: true,
+	title:{
+		text: "Pourcentages des Tâches par priorités"
+	},
+	subtitles: [{
+		text: "Tâches par priorité"
+	}],
+	data: [{
+		type: "pie",
+		showInLegend: "true",
+		legendText: "{label}",
+		indexLabelFontSize: 16,
+		indexLabel: "{label} - #percent%",
+		yValueFormatString: "#,##0",
+		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+	}]
+});
+chart.render();
+ 
+}
+</script>
 
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<?php
 // End of page
 llxFooter();
 $db->close();
