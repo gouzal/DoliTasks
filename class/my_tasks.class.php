@@ -81,7 +81,7 @@ class my_tasks extends CommonObject
 	/**
 	 * @var array  Array with all fields and their property. Do not use it as a static var. It may be modified by constructor.
 	 */
-	public $fields=array(
+/*	public $fields=array(
 		'rowid' => array('type'=>'integer', 'label'=>'TechnicalID', 'enabled'=>1, 'visible'=>-1, 'position'=>1, 'notnull'=>1, 'index'=>1, 'comment'=>"Id",),
 		'ref' => array('type'=>'varchar(128)', 'label'=>'Ref', 'enabled'=>1, 'visible'=>1, 'position'=>10, 'notnull'=>1, 'index'=>1, 'searchall'=>1, 'comment'=>"Reference of object", 'showoncombobox'=>'1',),
 		'label' => array('type'=>'varchar(255)', 'label'=>'Label', 'enabled'=>1, 'visible'=>1, 'position'=>30, 'notnull'=>-1, 'searchall'=>1, 'help'=>"Help text", 'showoncombobox'=>'1',),
@@ -96,8 +96,18 @@ class my_tasks extends CommonObject
 		'fk_user_modif' => array('type'=>'integer', 'label'=>'UserModif', 'enabled'=>1, 'visible'=>-2, 'position'=>511, 'notnull'=>-1,),
 		'import_key' => array('type'=>'varchar(14)', 'label'=>'ImportId', 'enabled'=>1, 'visible'=>-2, 'position'=>1000, 'notnull'=>-1,),
 		'status' => array('type'=>'integer', 'label'=>'Status', 'enabled'=>1, 'visible'=>1, 'position'=>1000, 'notnull'=>1, 'index'=>1, 'arrayofkeyval'=>array('0'=>'Brouillon', '1'=>'Actif', '-1'=>'Annul&eacute;')),
+	); */
+	public $fields = array(
+			'rowid' => array('type'=>'integer', 'label'=>'TechnicalID', 'enabled'=>1, 'visible'=>-1, 'position'=>1, 'notnull'=>1, 'index'=>1, 'comment'=>"Id",),
+			'title' => array('type'=>'varchar(254)', 'label'=>'title', 'enabled'=>1, 'visible'=>-1, 'position'=>10, 'notnull'=>1, 'index'=>1, 'searchall'=>1,'help'=>"Help text", 'comment'=>"Reference of object", ),
+			'priority' => array('type'=>'integer', 'label'=>'priority', 'enabled'=>1, 'visible'=>-1, 'position'=>30, 'notnull'=>1, 'index'=>1, 'searchall'=>1,'help'=>"Help text", 'comment'=>"Reference of object", ),
+			'created_by_id' => array('type'=>'integer', 'label'=>'created by (id)', 'enabled'=>1, 'visible'=>-1, 'position'=>40, 'notnull'=>1, 'index'=>1, 'searchall'=>1,'help'=>"Help text", 'comment'=>"Reference of object", ),
+			'created_by_name' => array('type'=>'varchar(254)', 'label'=>'created by (name)', 'enabled'=>1, 'visible'=>-1, 'position'=>50, 'notnull'=>1, 'index'=>1, 'searchall'=>1,'help'=>"Help text", 'comment'=>"Reference of object", ),
+			'created_at' => array('type'=>'date', 'label'=>'created at', 'enabled'=>1, 'visible'=>-1, 'position'=>60, 'notnull'=>1, 'index'=>1, 'searchall'=>1,'help'=>"Help text", 'comment'=>"Reference of object", ),
+			'end_at' => array('type'=>'date', 'label'=>'end at', 'enabled'=>1, 'visible'=>-1, 'position'=>70, 'notnull'=>1, 'index'=>1, 'searchall'=>1,'help'=>"Help text", 'comment'=>"Reference of object", ),
+
 	);
-	public $rowid;
+	/*public $rowid;
 	public $ref;
 	public $label;
 	public $amount;
@@ -110,7 +120,15 @@ class my_tasks extends CommonObject
 	public $fk_user_creat;
 	public $fk_user_modif;
 	public $import_key;
-	public $status;
+	public $status;*/
+	public $rowid;
+	public $title;
+	public $priority;
+	public $created_by_id;
+	public $created_by_name;
+	public $created_at;
+	public $end_at;
+
 	// END MODULEBUILDER PROPERTIES
 
 

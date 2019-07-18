@@ -166,6 +166,10 @@ class modDoliTasks extends DolibarrModules
 		// 'thirdparty'       to add a tab in third party view
 		// 'user'             to add a tab in user view
 
+        $this->tabs = array('DoliTasks:+tabname1:Title1:List of Tasks:1:/DoliTasks/dolitasksindex.php?id=__ID__' 
+        ,'DoliTasks:+tabname2:Title2:Add new Task:1:/DoliTasks/dolitasksindex.php?id=__ID__' ,
+        'DoliTasks:+tabname3:Title3:Stats:1:/DoliTasks/dolitasksindex.php?id=__ID__' 
+        );
 
         // Dictionaries
 		$this->dictionaries=array();
@@ -281,10 +285,10 @@ class modDoliTasks extends DolibarrModules
 		$this->menu[$r++]=array(
                 				'fk_menu'=>'fk_mainmenu=dolitasks',	    // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
 								'type'=>'left',			                // This is a Left menu entry
-								'titre'=>'List llx_dolitasks_my_tasks',
+								'titre'=>'List of Tasks',
 								'mainmenu'=>'dolitasks',
 								'leftmenu'=>'dolitasks_llx_dolitasks_my_tasks',
-								'url'=>'/dolitasks/llx_dolitasks_my_tasks_list.php',
+								'url'=>'/dolitasks/my_tasks_list.php',
 								'langs'=>'dolitasks@dolitasks',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
 								'position'=>1100+$r,
 								'enabled'=>'$conf->dolitasks->enabled',  // Define condition to show or hide menu entry. Use '$conf->dolitasks->enabled' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
@@ -294,10 +298,10 @@ class modDoliTasks extends DolibarrModules
 		$this->menu[$r++]=array(
                 				'fk_menu'=>'fk_mainmenu=dolitasks,fk_leftmenu=dolitasks_llx_dolitasks_my_tasks',	    // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
 								'type'=>'left',			                // This is a Left menu entry
-								'titre'=>'New llx_dolitasks_my_tasks',
+								'titre'=>'New Task',
 								'mainmenu'=>'dolitasks',
 								'leftmenu'=>'dolitasks_llx_dolitasks_my_tasks',
-								'url'=>'/dolitasks/llx_dolitasks_my_tasks_card.php?action=create',
+								'url'=>'/dolitasks/my_tasks_card.php?action=create',
 								'langs'=>'dolitasks@dolitasks',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
 								'position'=>1100+$r,
 								'enabled'=>'$conf->dolitasks->enabled',  // Define condition to show or hide menu entry. Use '$conf->dolitasks->enabled' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
