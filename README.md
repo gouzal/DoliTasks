@@ -1,6 +1,6 @@
 # DOLITASKS FOR <a href="https://www.dolibarr.org">DOLIBARR ERP CRM</a>
 # Description
-this a simple module to demonstrate the capabilities of dolibarr modules.
+this a simple module to demonstrate the capabilities of dolibarr modules. 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) 
 [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/) 
 [![saythanks](https://img.shields.io/badge/say-thanks-ff69b4.svg)](https://saythanks.io/to/gouzal)  
